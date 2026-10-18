@@ -1,0 +1,10 @@
+{
+  "model": "RF-composition",
+  "series": "5f",
+  "target": "gap",
+  "n_train": 1896,
+  "n_test": 247,
+  "test_mae": 0.8572,
+  "features": "element counts (120) + charge + unpaired",
+  "rf": "500 trees, seed 42"
+}

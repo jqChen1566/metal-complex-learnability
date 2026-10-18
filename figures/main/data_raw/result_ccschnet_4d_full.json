@@ -1,0 +1,10 @@
+{
+  "model": "ccschnet",
+  "series": "4d",
+  "subset": 12444,
+  "seed": 42,
+  "best_val_mae_eV": 0.2557,
+  "best_epoch": 161,
+  "test_mae_eV": 0.2579,
+  "anchor_composition_rf": 0.418
+}

@@ -1,0 +1,9 @@
+{
+  "model": "dimenet",
+  "subset": 12444,
+  "seed": 42,
+  "best_val_mae_eV": 0.2853,
+  "best_epoch": 168,
+  "test_mae_eV": 0.2701,
+  "anchor_composition_rf": 0.418
+}

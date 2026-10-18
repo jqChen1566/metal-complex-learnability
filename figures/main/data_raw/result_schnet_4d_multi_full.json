@@ -1,0 +1,20 @@
+{
+  "model": "schnet",
+  "series": "4d",
+  "multi": true,
+  "subset": 12444,
+  "seed": 42,
+  "hidden": 128,
+  "layers": 6,
+  "lr": 0.001,
+  "best_val_mae_eV": 0.6712,
+  "best_epoch": 250,
+  "test_mae": {
+    "homo": 0.4403,
+    "lumo": 0.4708,
+    "gap": 0.3283,
+    "dipole": 1.4355
+  },
+  "anchor_composition_rf": 0.418,
+  "anchor_note": "anchor is the HOMO random-forest value"
+}

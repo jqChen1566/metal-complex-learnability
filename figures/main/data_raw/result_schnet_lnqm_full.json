@@ -1,0 +1,12 @@
+{
+  "model": "schnet",
+  "series": "lnqm",
+  "subset": 12444,
+  "seed": 42,
+  "target": "homo",
+  "unit": "eV",
+  "best_val_mae_eV": 0.3744,
+  "best_epoch": 176,
+  "test_mae_eV": 0.3262,
+  "anchor_composition_rf": 0.418
+}

@@ -1,0 +1,20 @@
+{
+  "model": "ccschnet",
+  "series": "5f",
+  "multi": true,
+  "subset": 12444,
+  "seed": 42,
+  "hidden": 128,
+  "layers": 6,
+  "lr": 0.001,
+  "best_val_mae_eV": 1.2045,
+  "best_epoch": 72,
+  "test_mae": {
+    "homo": 1.0805,
+    "lumo": 0.7244,
+    "gap": 0.9818,
+    "dipole": 1.7722
+  },
+  "anchor_composition_rf": 0.418,
+  "anchor_note": "anchor is the HOMO random-forest value"
+}

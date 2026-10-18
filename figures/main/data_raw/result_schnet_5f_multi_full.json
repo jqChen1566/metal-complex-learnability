@@ -1,0 +1,19 @@
+{
+  "model": "schnet",
+  "series": "5f",
+  "multi": true,
+  "subset": 12444,
+  "seed": 42,
+  "hidden": 128,
+  "layers": 6,
+  "lr": 0.001,
+  "best_val_mae_eV": 2.0706,
+  "best_epoch": 69,
+  "test_mae": {
+    "homo": 2.4656,
+    "lumo": 1.7379,
+    "gap": 1.2923,
+    "dipole": 2.2481
+  },
+  "anchor_composition_rf": 0.418
+}

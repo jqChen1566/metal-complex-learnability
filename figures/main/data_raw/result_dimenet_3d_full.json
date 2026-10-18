@@ -1,0 +1,10 @@
+{
+  "model": "dimenet",
+  "series": "3d",
+  "subset": 12444,
+  "seed": 42,
+  "best_val_mae_eV": 0.3946,
+  "best_epoch": 169,
+  "test_mae_eV": 0.4072,
+  "anchor_composition_rf": 0.418
+}

@@ -1,0 +1,19 @@
+{
+  "model": "dimenet",
+  "series": "5f",
+  "multi": true,
+  "subset": 12444,
+  "seed": 42,
+  "hidden": 128,
+  "layers": 4,
+  "lr": 0.001,
+  "best_val_mae_eV": 1.852,
+  "best_epoch": 125,
+  "test_mae": {
+    "homo": 2.003,
+    "lumo": 1.5078,
+    "gap": 1.0692,
+    "dipole": 1.9756
+  },
+  "anchor_composition_rf": 0.418
+}

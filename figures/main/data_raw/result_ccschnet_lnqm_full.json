@@ -1,0 +1,10 @@
+{
+  "model": "ccschnet",
+  "series": "lnqm",
+  "subset": 2000,
+  "seed": 42,
+  "best_val_mae_eV": 0.5789,
+  "best_epoch": 19,
+  "test_mae_eV": 0.4698,
+  "anchor_composition_rf": 0.418
+}

@@ -1,0 +1,9 @@
+{
+  "model": "schnet",
+  "subset": 12444,
+  "seed": 44,
+  "best_val_mae_eV": 0.3884,
+  "best_epoch": 124,
+  "test_mae_eV": 0.3634,
+  "anchor_composition_rf": 0.418
+}

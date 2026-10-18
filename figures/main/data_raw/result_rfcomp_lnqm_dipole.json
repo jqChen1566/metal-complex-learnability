@@ -1,0 +1,10 @@
+{
+  "model": "RF-composition",
+  "series": "lnqm",
+  "target": "dipole",
+  "n_train": 12444,
+  "n_test": 1545,
+  "test_mae": 0.927,
+  "features": "element counts (120) + charge + unpaired",
+  "rf": "500 trees, seed 42"
+}

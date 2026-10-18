@@ -1,0 +1,12 @@
+{
+  "model": "schnet",
+  "series": "5d",
+  "subset": 12444,
+  "seed": 43,
+  "target": "homo",
+  "unit": "eV",
+  "best_val_mae_eV": 0.4085,
+  "best_epoch": 262,
+  "test_mae_eV": 0.4426,
+  "anchor_composition_rf": 0.418
+}

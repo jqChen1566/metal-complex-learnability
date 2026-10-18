@@ -1,0 +1,10 @@
+{
+  "model": "RF-composition",
+  "series": "4d",
+  "target": "pol",
+  "n_train": 29976,
+  "n_test": 3711,
+  "test_mae": 10.7901,
+  "features": "element counts (120) + charge + unpaired",
+  "rf": "500 trees, seed 42"
+}

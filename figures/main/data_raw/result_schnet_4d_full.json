@@ -1,0 +1,10 @@
+{
+  "model": "schnet",
+  "series": "4d",
+  "subset": 12444,
+  "seed": 42,
+  "best_val_mae_eV": 0.3974,
+  "best_epoch": 177,
+  "test_mae_eV": 0.3969,
+  "anchor_composition_rf": 0.418
+}

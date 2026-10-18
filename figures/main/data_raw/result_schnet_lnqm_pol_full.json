@@ -1,0 +1,12 @@
+{
+  "model": "schnet",
+  "series": "lnqm",
+  "subset": 12444,
+  "seed": 42,
+  "target": "pol",
+  "unit": "a.u.",
+  "best_val_mae_eV": 0.1634,
+  "best_epoch": 293,
+  "test_mae_eV": 0.1601,
+  "anchor_composition_rf": null
+}

@@ -1,0 +1,10 @@
+{
+  "model": "schnet",
+  "series": "5f",
+  "subset": 12444,
+  "seed": 42,
+  "best_val_mae_eV": 2.6746,
+  "best_epoch": 84,
+  "test_mae_eV": 2.6569,
+  "anchor_composition_rf": 0.418
+}

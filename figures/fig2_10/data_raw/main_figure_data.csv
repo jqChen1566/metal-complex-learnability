@@ -1,0 +1,81 @@
+property,series,series_label,model,model_label,test_mae,unit,n_test,seed,remark
+homo,3d,3d,rfcomp,RF-composition,0.3582,eV,4095,42,"RF baseline: element counts (120) + total charge + unpaired electrons; 500 trees, seed 42; trained on the full series train split"
+homo,3d,3d,schnet,SchNet,0.4669,eV,4095,42,single-target HOMO; seed 42
+homo,3d,3d,dimenet,DimeNet++,0.4072,eV,4095,42,single-target HOMO; seed 42
+homo,3d,3d,ccschnet,CC-Schnet,0.279,eV,4095,42,single-target HOMO; seed 42
+homo,4d,4d,rfcomp,RF-composition,0.2903,eV,3711,42,"RF baseline: element counts (120) + total charge + unpaired electrons; 500 trees, seed 42; trained on the full series train split"
+homo,4d,4d,schnet,SchNet,0.3969,eV,3711,42,single-target HOMO; seed 42
+homo,4d,4d,dimenet,DimeNet++,0.4268,eV,3711,42,single-target HOMO; seed 42
+homo,4d,4d,ccschnet,CC-Schnet,0.2579,eV,3711,42,single-target HOMO; seed 42
+homo,5d,5d,rfcomp,RF-composition,0.3116,eV,2941,42,"RF baseline: element counts (120) + total charge + unpaired electrons; 500 trees, seed 42; trained on the full series train split"
+homo,5d,5d,schnet,SchNet,0.4426,eV,2941,43,seed 43
+homo,5d,5d,dimenet,DimeNet++,0.4035,eV,2941,42,single-target HOMO; seed 42
+homo,5d,5d,ccschnet,CC-Schnet,0.2665,eV,2941,42,single-target HOMO; seed 42
+homo,lnqm,4f,rfcomp,RF-composition,0.3847,eV,1545,42,"RF baseline: element counts (120) + total charge + unpaired electrons; 500 trees, seed 42; trained on the full series train split"
+homo,lnqm,4f,schnet,SchNet,0.3262,eV,1545,42,"300-epoch single-target run, seed 42"
+homo,lnqm,4f,dimenet,DimeNet++,0.2701,eV,1545,42,single-target HOMO; seed 42
+homo,lnqm,4f,ccschnet,CC-Schnet,0.4698,eV,1545,42,single-target HOMO; seed 42
+homo,5f,5f,rfcomp,RF-composition,0.9788,eV,247,42,"RF baseline: element counts (120) + total charge + unpaired electrons; 500 trees, seed 42; trained on the full series train split"
+homo,5f,5f,schnet,SchNet,2.6569,eV,247,42,single-target HOMO; seed 42
+homo,5f,5f,dimenet,DimeNet++,1.8971,eV,247,42,single-target HOMO; seed 42
+homo,5f,5f,ccschnet,CC-Schnet,1.0984,eV,247,42,single-target HOMO; seed 42
+lumo,3d,3d,rfcomp,RF-composition,0.4384,eV,4095,42,"RF baseline: element counts (120) + total charge + unpaired electrons; 500 trees, seed 42; trained on the full series train split"
+lumo,3d,3d,schnet,SchNet,0.5766,eV,4095,42,multi-task joint training (4 targets); train subset 12444; seed 42
+lumo,3d,3d,dimenet,DimeNet++,0.3826,eV,4095,42,multi-task joint training (4 targets); train subset 12444; seed 42
+lumo,3d,3d,ccschnet,CC-Schnet,0.3637,eV,4095,42,multi-task joint training (4 targets); train subset 12444; seed 42
+lumo,4d,4d,rfcomp,RF-composition,0.3985,eV,3711,42,"RF baseline: element counts (120) + total charge + unpaired electrons; 500 trees, seed 42; trained on the full series train split"
+lumo,4d,4d,schnet,SchNet,0.4708,eV,3711,42,multi-task joint training (4 targets); train subset 12444; seed 42
+lumo,4d,4d,dimenet,DimeNet++,0.3475,eV,3711,42,multi-task joint training (4 targets); train subset 12444; seed 42
+lumo,4d,4d,ccschnet,CC-Schnet,,eV,3711,,not determined
+lumo,5d,5d,rfcomp,RF-composition,0.434,eV,2941,42,"RF baseline: element counts (120) + total charge + unpaired electrons; 500 trees, seed 42; trained on the full series train split"
+lumo,5d,5d,schnet,SchNet,0.5976,eV,2941,42,multi-task joint training (4 targets); train subset 12444; seed 42
+lumo,5d,5d,dimenet,DimeNet++,0.4208,eV,2941,42,multi-task joint training (4 targets); train subset 12444; seed 42
+lumo,5d,5d,ccschnet,CC-Schnet,0.3494,eV,2941,42,multi-task joint training (4 targets); train subset 12444; seed 42
+lumo,lnqm,4f,rfcomp,RF-composition,0.3772,eV,1545,42,"RF baseline: element counts (120) + total charge + unpaired electrons; 500 trees, seed 42; trained on the full series train split"
+lumo,lnqm,4f,schnet,SchNet,0.3893,eV,1545,42,multi-task joint training (4 targets); train subset 12444; seed 42
+lumo,lnqm,4f,dimenet,DimeNet++,0.3383,eV,1545,42,multi-task joint training (4 targets); train subset 12444; seed 42
+lumo,lnqm,4f,ccschnet,CC-Schnet,0.2769,eV,1545,42,multi-task joint training (4 targets); train subset 12444; seed 42
+lumo,5f,5f,rfcomp,RF-composition,0.6649,eV,247,42,"RF baseline: element counts (120) + total charge + unpaired electrons; 500 trees, seed 42; trained on the full series train split"
+lumo,5f,5f,schnet,SchNet,1.7379,eV,247,42,multi-task joint training (4 targets); train subset 12444; seed 42
+lumo,5f,5f,dimenet,DimeNet++,1.5078,eV,247,42,multi-task joint training (4 targets); train subset 12444; seed 42
+lumo,5f,5f,ccschnet,CC-Schnet,0.7244,eV,247,42,multi-task joint training (4 targets); train subset 12444; seed 42
+gap,3d,3d,rfcomp,RF-composition,0.4962,eV,4095,42,"RF baseline: element counts (120) + total charge + unpaired electrons; 500 trees, seed 42; trained on the full series train split"
+gap,3d,3d,schnet,SchNet,0.3491,eV,4095,42,multi-task joint training (4 targets); train subset 12444; seed 42
+gap,3d,3d,dimenet,DimeNet++,0.2766,eV,4095,42,multi-task joint training (4 targets); train subset 12444; seed 42
+gap,3d,3d,ccschnet,CC-Schnet,0.4243,eV,4095,42,multi-task joint training (4 targets); train subset 12444; seed 42
+gap,4d,4d,rfcomp,RF-composition,0.4531,eV,3711,42,"RF baseline: element counts (120) + total charge + unpaired electrons; 500 trees, seed 42; trained on the full series train split"
+gap,4d,4d,schnet,SchNet,0.3283,eV,3711,42,multi-task joint training (4 targets); train subset 12444; seed 42
+gap,4d,4d,dimenet,DimeNet++,0.2627,eV,3711,42,multi-task joint training (4 targets); train subset 12444; seed 42
+gap,4d,4d,ccschnet,CC-Schnet,,eV,3711,,not determined
+gap,5d,5d,rfcomp,RF-composition,0.4765,eV,2941,42,"RF baseline: element counts (120) + total charge + unpaired electrons; 500 trees, seed 42; trained on the full series train split"
+gap,5d,5d,schnet,SchNet,0.3617,eV,2941,42,multi-task joint training (4 targets); train subset 12444; seed 42
+gap,5d,5d,dimenet,DimeNet++,0.2812,eV,2941,42,multi-task joint training (4 targets); train subset 12444; seed 42
+gap,5d,5d,ccschnet,CC-Schnet,0.4038,eV,2941,42,multi-task joint training (4 targets); train subset 12444; seed 42
+gap,lnqm,4f,rfcomp,RF-composition,0.5247,eV,1545,42,"RF baseline: element counts (120) + total charge + unpaired electrons; 500 trees, seed 42; trained on the full series train split"
+gap,lnqm,4f,schnet,SchNet,0.3854,eV,1545,42,multi-task joint training (4 targets); train subset 12444; seed 42
+gap,lnqm,4f,dimenet,DimeNet++,0.3204,eV,1545,42,multi-task joint training (4 targets); train subset 12444; seed 42
+gap,lnqm,4f,ccschnet,CC-Schnet,0.3887,eV,1545,42,multi-task joint training (4 targets); train subset 12444; seed 42
+gap,5f,5f,rfcomp,RF-composition,0.8572,eV,247,42,"RF baseline: element counts (120) + total charge + unpaired electrons; 500 trees, seed 42; trained on the full series train split"
+gap,5f,5f,schnet,SchNet,1.2923,eV,247,42,multi-task joint training (4 targets); train subset 12444; seed 42
+gap,5f,5f,dimenet,DimeNet++,1.0692,eV,247,42,multi-task joint training (4 targets); train subset 12444; seed 42
+gap,5f,5f,ccschnet,CC-Schnet,0.9818,eV,247,42,multi-task joint training (4 targets); train subset 12444; seed 42
+dipole,3d,3d,rfcomp,RF-composition,2.3971,Debye,4095,42,"RF baseline: element counts (120) + total charge + unpaired electrons; 500 trees, seed 42; trained on the full series train split"
+dipole,3d,3d,schnet,SchNet,1.6392,Debye,4095,42,multi-task joint training (4 targets); train subset 12444; seed 42
+dipole,3d,3d,dimenet,DimeNet++,1.0954,Debye,4095,42,multi-task joint training (4 targets); train subset 12444; seed 42
+dipole,3d,3d,ccschnet,CC-Schnet,2.0536,Debye,4095,42,multi-task joint training (4 targets); train subset 12444; seed 42
+dipole,4d,4d,rfcomp,RF-composition,2.2268,Debye,3711,42,"RF baseline: element counts (120) + total charge + unpaired electrons; 500 trees, seed 42; trained on the full series train split"
+dipole,4d,4d,schnet,SchNet,1.4355,Debye,3711,42,multi-task joint training (4 targets); train subset 12444; seed 42
+dipole,4d,4d,dimenet,DimeNet++,0.9353,Debye,3711,42,multi-task joint training (4 targets); train subset 12444; seed 42
+dipole,4d,4d,ccschnet,CC-Schnet,,Debye,3711,,not determined
+dipole,5d,5d,rfcomp,RF-composition,2.2175,Debye,2941,42,"RF baseline: element counts (120) + total charge + unpaired electrons; 500 trees, seed 42; trained on the full series train split"
+dipole,5d,5d,schnet,SchNet,1.5679,Debye,2941,42,multi-task joint training (4 targets); train subset 12444; seed 42
+dipole,5d,5d,dimenet,DimeNet++,0.9989,Debye,2941,42,multi-task joint training (4 targets); train subset 12444; seed 42
+dipole,5d,5d,ccschnet,CC-Schnet,1.7953,Debye,2941,42,multi-task joint training (4 targets); train subset 12444; seed 42
+dipole,lnqm,4f,rfcomp,RF-composition,0.927,Debye,1545,42,"RF baseline: element counts (120) + total charge + unpaired electrons; 500 trees, seed 42; trained on the full series train split"
+dipole,lnqm,4f,schnet,SchNet,0.526,Debye,1545,42,multi-task joint training (4 targets); train subset 12444; seed 42
+dipole,lnqm,4f,dimenet,DimeNet++,0.4087,Debye,1545,42,multi-task joint training (4 targets); train subset 12444; seed 42
+dipole,lnqm,4f,ccschnet,CC-Schnet,0.8118,Debye,1545,42,multi-task joint training (4 targets); train subset 12444; seed 42
+dipole,5f,5f,rfcomp,RF-composition,2.0083,Debye,247,42,"RF baseline: element counts (120) + total charge + unpaired electrons; 500 trees, seed 42; trained on the full series train split"
+dipole,5f,5f,schnet,SchNet,2.2481,Debye,247,42,multi-task joint training (4 targets); train subset 12444; seed 42
+dipole,5f,5f,dimenet,DimeNet++,1.9756,Debye,247,42,multi-task joint training (4 targets); train subset 12444; seed 42
+dipole,5f,5f,ccschnet,CC-Schnet,1.7722,Debye,247,42,multi-task joint training (4 targets); train subset 12444; seed 42
