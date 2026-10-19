@@ -19,7 +19,7 @@ original sources and referenced in the manuscript.
 | `data_prep/` | Polarizability, node-level, edge-level, RDKit and composition-baseline preparation |
 | `qc_recompute/` | ORCA input generation and parsing for label reproduction and multi-reference anchors |
 | `figures/` | Figure-generation scripts and the small derived tables needed to redraw the manuscript figures |
-| `docs/` | Data layout, environment variables, step-by-step reproduction notes, and a Chinese manual (`manual_zh.md`) |
+| `docs/` | Data layout, environment variables, step-by-step reproduction notes, and the code manual (`manual.md`) |
 
 ## Data
 
