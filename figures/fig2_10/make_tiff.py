@@ -12,7 +12,7 @@ from pathlib import Path
 from PIL import Image, ImageCms
 
 HERE = Path(__file__).resolve().parent
-FIG1_DIRS = sorted(p for p in HERE.parent.glob("Fig1_*") if p.is_dir())
+FIG1_DIRS = [HERE.parent / "fig1"] if (HERE.parent / "fig1").is_dir() else []
 DIRS = [HERE] + FIG1_DIRS
 EXTRA = [HERE / "toc_graphic.png"]
 
