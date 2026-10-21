@@ -14,6 +14,7 @@ Outputs results/E03/:
 import sys
 import time
 import csv
+import argparse
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -128,9 +129,22 @@ def predict_with(state, stats, X, device):
 
 
 def main():
+    global TARGET
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--target', default='homo',
+                        choices=['homo', 'lumo', 'gap', 'dipole'])
+    parser.add_argument('--acqm-min-atoms', type=int, default=0)
+    parser.add_argument('--charge-abs-max', type=int, default=-1)
+    parser.add_argument('--unpaired-max', type=int, default=-1)
+    parser.add_argument('--tag', default='')
+    args = parser.parse_args()
+    TARGET = args.target
+    suffix = '' if TARGET == 'homo' else f'_{TARGET}'
+    if args.tag:
+        suffix += f'_{args.tag}'
     t0 = time.time()
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    print(f'device = {device}', flush=True)
+    print(f'device = {device} | target = {TARGET}', flush=True)
 
     # ---- load + super table ----
     data = {}
@@ -146,9 +160,25 @@ def main():
     for name, (structs, part, ys) in data.items():
         Xd[name] = featurize_super(structs, z2i)
         yd[name] = ys[TARGET]
-        TR[name] = np.array(part['train_idx'])
-        TE[name] = np.array(part['test_idx'])
-        VA[name] = np.array(part['val_idx'])
+        mask = np.ones(len(structs), dtype=bool)
+        if name == '5f' and args.acqm_min_atoms > 0:
+            mask &= np.array([len(d['atomic_numbers']) >= args.acqm_min_atoms
+                              for d in structs])
+        if args.charge_abs_max >= 0:
+            mask &= np.array([abs(int(d['total_charge'])) <= args.charge_abs_max
+                              for d in structs])
+        if args.unpaired_max >= 0:
+            mask &= np.array([int(d.get('unpaired_e', 0)) <= args.unpaired_max
+                              for d in structs])
+        tr = np.array(part['train_idx'])
+        te = np.array(part['test_idx'])
+        va = np.array(part['val_idx'])
+        TR[name] = tr[mask[tr]]
+        TE[name] = te[mask[te]]
+        VA[name] = va[mask[va]]
+        print(f'{name}: filter keeps train {len(TR[name])}/{len(tr)}, '
+              f'val {len(VA[name])}/{len(va)}, test {len(TE[name])}/{len(te)}',
+              flush=True)
 
     # ---- pretraining (full source) ----
     pre = {}
@@ -160,18 +190,22 @@ def main():
 
     # ---- zero-shot matrix 5x5 ----
     zs_rows = []
+    preds_out = {}
     for src in SERIES_CFG:
         for tgt in SERIES_CFG:
             state, stats = pre[src]
             pred = predict_with(state, stats, Xd[tgt][TE[tgt]], device)
             y_true = yd[tgt][TE[tgt]]
+            preds_out[f'{src}->{tgt}'] = (pred, y_true)
             mae = float(np.abs(pred - y_true).mean())
             pred_s = pred - pred.mean() + y_true.mean()
             mae_s = float(np.abs(pred_s - y_true).mean())
             zs_rows.append(dict(src=src, tgt=tgt, zeroshot_mae=mae,
                                 zeroshot_mae_eV=mae * EV_PER_HA, shifted_mae=mae_s))
             print(f'  zs {src}->{tgt}: {mae:.5f} Ha ({mae*EV_PER_HA:.3f} eV)', flush=True)
-    with open(OUTDIR / 'transfer_zeroshot.csv', 'w', newline='') as fh:
+    np.savez(OUTDIR / f'transfer_preds{suffix}.npz',
+             **{k: np.vstack(v) for k, v in preds_out.items()})
+    with open(OUTDIR / f'transfer_zeroshot{suffix}.csv', 'w', newline='') as fh:
         w = csv.DictWriter(fh, fieldnames=list(zs_rows[0].keys()))
         w.writeheader()
         w.writerows(zs_rows)
@@ -193,7 +227,7 @@ def main():
                                        scratch_mae=float(np.abs(p0 - yte).mean()),
                                        finetune_mae=float(np.abs(p1 - yte).mean())))
             print(f'  curve {srct}->{tgtt} n={n_sample} done | {time.time()-t0:.0f}s', flush=True)
-    with open(OUTDIR / 'transfer_curve.csv', 'w', newline='') as fh:
+    with open(OUTDIR / f'transfer_curve{suffix}.csv', 'w', newline='') as fh:
         w = csv.DictWriter(fh, fieldnames=list(curve_rows[0].keys()))
         w.writeheader()
         w.writerows(curve_rows)
@@ -213,7 +247,7 @@ def main():
                               stats=stats_s, init_state=state_s, lr=3e-4)
             scale_rows.append(dict(src='4f_sub1896', tgt='5f', n=n_sample, draw=draw,
                                    finetune_mae=float(np.abs(p - yd['5f'][TE['5f']]).mean())))
-    with open(OUTDIR / 'transfer_srcscale.csv', 'w', newline='') as fh:
+    with open(OUTDIR / f'transfer_srcscale{suffix}.csv', 'w', newline='') as fh:
         w = csv.DictWriter(fh, fieldnames=list(scale_rows[0].keys()))
         w.writeheader()
         w.writerows(scale_rows)
