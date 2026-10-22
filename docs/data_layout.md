@@ -17,6 +17,7 @@ data/
   tmqm_properties_4d.json
   tmqm_properties_5d.json
   tmqm_properties_5f.json
+  acqm_properties_occ50.json
   tmqm_y.csv
   partitions/
     lnqm_scaffold_12444.json
@@ -28,6 +29,14 @@ coordinates, total charge, unpaired electrons, target values and the original
 dataset index. The training, validation and test files contain the scaffold
 split used throughout the paper; the partition JSON files are the authoritative
 row indices.
+
+For AcQM, the raw h5 frontier orbitals were parsed with an occupancy rule that
+is invalid for ORCA SmearTemp calculations (fractional occupations). The file
+`data_prep/acqm_occ50_labels.npz` contains the corrected labels, with HOMO
+defined as the highest orbital with occupation >= 0.5 and LUMO as the lowest
+with occupation < 0.5. `code/align_acqm.py` applies this table and writes
+`acqm_properties_occ50.json`; 147 of the 2,394 structures change. Do not use the
+raw h5 HOMO/LUMO values for the 5f series.
 
 ## Graph files
 

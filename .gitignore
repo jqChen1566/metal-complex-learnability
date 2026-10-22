@@ -8,6 +8,7 @@ graphs/
 *.pth
 *.npz
 *.npy
+!data_prep/acqm_occ50_labels.npz
 
 # Generated figures
 figures/**/*.png

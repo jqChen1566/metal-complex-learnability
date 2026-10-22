@@ -3,9 +3,16 @@
 Alignment key: h5 `uid` == `name` in homo_lumo.json, exact match, same order;
 the json is an ordered subset of the h5 file (2394/2531 parsed successfully).
 Units: h5 energies in Hartree (evaluated x27.2114); h5 dipole in a.u. x2.5417
--> D. Outputs: data/acqm_properties.json (LnQM-compatible fields) plus
+-> D. Outputs: data/acqm_properties_occ50.json (LnQM-compatible fields) plus
 partitions/acqm_scaffold_*.json. LoEO check: held-out element counts are
 compared item by item against split_info.
+
+Important: the h5 frontier orbitals were parsed with an occupancy rule that is
+invalid for ORCA SmearTemp calculations (fractional occupations). The corrected
+labels in data_prep/acqm_occ50_labels.npz define HOMO as the highest orbital
+with occupation >= 0.5 and LUMO as the lowest with occupation < 0.5. They are
+applied here; 147 of the 2,394 structures change. Do not use the raw h5
+frontier orbitals for the 5f series.
 """
 import sys
 import json
@@ -22,7 +29,8 @@ from common import DATA, PART_DIR, scaffold_key, AU_TO_DEBYE, EV_PER_HA, METAL_R
 H5 = DATA / 'acqm.h5'
 JSON_HL = DATA / 'acqm' / 'acqm_homo_lumo.json'
 SPLIT_INFO = DATA / 'acqm' / 'split_info.json'
-OUT = DATA / 'acqm_properties.json'
+OUT = DATA / 'acqm_properties_occ50.json'
+LABELS = Path(__file__).resolve().parent.parent / 'data_prep' / 'acqm_occ50_labels.npz'
 
 AN_SYMBOL = {89: 'Ac', 90: 'Th', 91: 'Pa', 92: 'U', 93: 'Np', 94: 'Pu', 95: 'Am',
              96: 'Cm', 97: 'Bk', 98: 'Cf', 99: 'Es', 100: 'Fm', 101: 'Md', 102: 'No', 103: 'Lr'}
@@ -56,6 +64,27 @@ def main():
                          homo_up=hu, homo_dn=hd, lumo_up=lu, lumo_dn=ld,
                          homo=homo, lumo=lumo, gap=lumo - homo,
                          dipole_mag=float(d['dipole'][i].item()) * AU_TO_DEBYE))
+
+    labels = np.load(LABELS)
+    assert np.array_equal(np.asarray(labels['index'], dtype=int),
+                          np.arange(len(rows))), 'occ50 label index mismatch'
+    changed = 0
+    for j, r in enumerate(rows):
+        hu = float(labels['homo_up'][j])
+        hd = float(labels['homo_dn'][j])
+        lu = float(labels['lumo_up'][j])
+        ld = float(labels['lumo_dn'][j])
+        if (abs(hu - r['homo_up']) > 1e-12 or abs(hd - r['homo_dn']) > 1e-12
+                or abs(lu - r['lumo_up']) > 1e-12
+                or abs(ld - r['lumo_dn']) > 1e-12):
+            changed += 1
+        r['homo_up'], r['homo_dn'] = hu, hd
+        r['lumo_up'], r['lumo_dn'] = lu, ld
+        r['homo'] = max(hu, hd)
+        r['lumo'] = min(lu, ld)
+        r['gap'] = r['lumo'] - r['homo']
+    print(f'occ50 labels applied: {changed} structures changed', flush=True)
+    assert changed == 147, 'unexpected number of corrected 5f structures'
     json.dump(rows, open(OUT, 'w'))
     print(f'written {len(rows)} -> {OUT.name} | {time.time()-t0:.0f}s', flush=True)
 

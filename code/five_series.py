@@ -36,7 +36,7 @@ SERIES_CFG = {
                part=PART_DIR / 'tmqm5d_scaffold_29292.json', metal=(72, 80), src='tmqm'),
     '4f': dict(props=[DATA / 'lnqm_properties_train.json', DATA / 'lnqm_properties_test.json'],
                part=PART_DIR / 'lnqm_scaffold_12444.json', metal=(57, 71), src='lnqm'),
-    '5f': dict(props=[DATA / 'acqm_properties.json'],
+    '5f': dict(props=[DATA / 'acqm_properties_occ50.json'],
                part=PART_DIR / 'acqm_scaffold_2394.json', metal=(89, 103), src='acqm'),
 }
 TARGETS = ['homo', 'lumo', 'gap', 'dipole']
